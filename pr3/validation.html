@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>JavaScript Functions & Validations</title>
+    <script>
+        
+        function validateForm() {
+            let name = document.getElementById("name").value;
+            let email = document.getElementById("email").value;
+            let password = document.getElementById("password").value;
+            let confirmPassword = document.getElementById("confirmPassword").value;
+
+            if (name === "" || email === "" || password === "" || confirmPassword === "") {
+                alert("All fields are required!");
+                return false;
+            }
+            if (!validateEmail(email)) {
+                alert("Invalid email address!");
+                return false;
+            }
+            if (password.length < 6) {
+                alert("Password must be at least 6 characters!");
+                return false;
+            }
+
+            if (password !== confirmPassword) {
+                alert("Passwords do not match!");
+                return false;
+            }
+
+            alert("Form submitted successfully!");
+            return true;
+        }
+
+        function validateEmail(email) {
+            let pattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+            return pattern.test(email);
+        }
+
+    </script>
+</head>
+
+<body>
+
+    <h2>Registration Form</h2>
+
+    <form onsubmit="return validateForm()">
+
+        <label>Name:</label><br>
+        <input type="text" id="name"><br><br>
+
+        <label>Email:</label><br>
+        <input type="text" id="email"><br><br>
+
+        <label>Password:</label><br>
+        <input type="password" id="password"><br><br>
+
+        <label>Confirm Password:</label><br>
+        <input type="password" id="confirmPassword"><br><br>
+
+        <button type="submit">Register</button>
+    </form>
+</body>
+</html>

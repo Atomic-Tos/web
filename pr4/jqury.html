@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Read and Write HTML with jQuery</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+
+            $("#readBtn").click(function() {
+                let content = $("#message").html();
+                alert("Current HTML content is: " + content);
+            });
+
+            $("#writeBtn").click(function() {
+                $("#message").html("<b>This content has been changed using jQuery!</b>");
+            });
+
+        });
+    </script>
+</head>
+
+<body>
+
+    <h2>jQuery Read & Write HTML Example</h2>
+
+    <div id="message">
+        <p>This is the original HTML content.</p>
+    </div>
+
+    <br>
+
+    <button id="readBtn">Read HTML Content</button>
+    <button id="writeBtn">Write HTML Content</button>
+
+</body>
+</html>

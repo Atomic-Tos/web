@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<input id="cookieValue" placeholder="Enter value">
+<button onclick="updateCookie()">Update</button>
+<button onclick="retrieveCookie()">Retrieve</button>
+<button onclick="deleteCookie()">Delete</button>
+
+<p id="msg">No cookie</p>
+
+<script>
+function setCookie(name, value, hours) {
+    const d = new Date();
+    d.setTime(d.getTime() + (hours*60*60*1000));
+    document.cookie = `${name}=${value};expires=${d.toUTCString()};path=/`;
+}
+
+function getCookie(name) {
+    const cookies = document.cookie.split(';');
+    for(let c of cookies) {
+        let [k,v] = c.trim().split('=');
+        if(k === name) return v;
+    }
+    return null;
+}
+
+function updateCookie() {
+    const val = document.getElementById('cookieValue').value;
+    setCookie('myCookie', val, 1);
+    document.getElementById('msg').innerText = 'Cookie Updated!';
+}
+
+function retrieveCookie() {
+    const val = getCookie('myCookie');
+    document.getElementById('msg').innerText = val ? `Stored Cookie: ${val}` : 'No cookie found';
+}
+
+function deleteCookie() {
+    setCookie('myCookie', '', -1);
+    document.getElementById('msg').innerText = 'Cookie Deleted!';
+}
+</script>
+
+</body>
+</html>
